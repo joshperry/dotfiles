@@ -1,0 +1,6 @@
+snippet mcf
+<form #f="ngForm" [ngFormModel]="$1Form" (submit)="onSubmit(f.value)">
+  <input type="text" placeholder="Name" ngControl="name" />
+  <button>Submit</button>
+</form>
+endsnippet

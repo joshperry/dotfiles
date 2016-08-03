@@ -1,0 +1,69 @@
+snippet mc
+import {Component, View} from 'angular2/core';
+import {MeteorComponent} from 'angular2-meteor';
+
+${1:import}
+
+@Component({
+  selector: '$2'
+})
+@View({
+  templateUrl: '`pwd`$3',
+  directives: [  ]
+})
+export class $4 extends MeteorComponent {
+  $5
+
+  constructor() {
+    $6
+  }
+
+  $0
+}
+endsnippet
+
+snippet mcf
+import {Component, View} from 'angular2/core';
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators, Control} from 'angular2/common';
+import {MeteorComponent} from 'angular2-meteor';
+
+$1
+
+@Component({
+  selector: '$2'
+})
+@View({
+  templateUrl: '$3',
+  directives: [ FORM_DIRECTIVES ]
+})
+export class $4 extends MeteorComponent {
+  $5
+
+  constructor() {
+    super();
+    var fb = new FormBuilder();
+    this.$6Form = fb.group({
+      name: ['', Validators.required]
+    });
+  }
+
+  onSubmit(${7:values}) {
+    // Add new party if the form is valid
+    if(this.$6Form.valid) {
+      $0
+      // Clear form controls
+      (<Control>this.$6Form.controls['name']).updateValue('');
+    } else {
+      alert('Please log in to add a party');
+    }
+  }
+}
+endsnippet
+
+snippet imp
+import {$1} from '$2';$0
+endsnippet
+
+snippet imps
+import * as $1 from '$2';$0
+endsnippet
