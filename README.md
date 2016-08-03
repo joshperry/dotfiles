@@ -18,7 +18,7 @@ Provides For:
 
 1. Get dotfiles
 	```
-	$ git clone https://github.com/joshperry/dotfiles.git ~/.dotfiles
+	$ git clone git@github.com:joshperry/dotfiles.git ~/.dotfiles
 	```
 
 2. Bind dotfiles to home directory
