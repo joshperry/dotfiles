@@ -23,7 +23,9 @@ Bundle 'tpope/vim-obsession'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'rodjek/vim-puppet'
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Needed by typescript server client tsuquyomi
 Bundle 'Shougo/vimproc.vim'
