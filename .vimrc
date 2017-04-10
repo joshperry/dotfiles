@@ -24,6 +24,8 @@ Bundle 'tpope/vim-obsession'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'rodjek/vim-puppet'
+Plugin 'majutsushi/tagbar'
+Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
