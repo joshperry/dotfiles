@@ -31,6 +31,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 
+Plugin 'christoomey/vim-tmux-navigator' " Navigate tmux and vim panes seamlessly
+
 Plugin 'morhetz/gruvbox'
 
 " Needed by typescript server client tsuquyomi
