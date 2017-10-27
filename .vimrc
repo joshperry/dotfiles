@@ -31,6 +31,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 
+Plugin 'morhetz/gruvbox'
+
 " Needed by typescript server client tsuquyomi
 Bundle 'Shougo/vimproc.vim'
 " typescript server client
@@ -62,7 +64,7 @@ set incsearch	"incremental and highlight search
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  colorscheme slate
+  colorscheme gruvbox
 endif
 
 " In many terminal emulators the mouse works just fine, thus enable it.
