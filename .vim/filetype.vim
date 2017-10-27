@@ -6,4 +6,5 @@ endif
 augroup filetypedetect
 	au! BufRead,BufNewFile .jshintrc set filetype=json
 	au! BufRead,BufNewFile *.es6 set filetype=javascript
+	au! BufRead,BufNewFile Jenkinsfile set filetype=groovy
 augroup END
