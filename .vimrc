@@ -135,6 +135,7 @@ set timeoutlen=500     " Time to wait for a command (after leader for example)
 set formatoptions=crql
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+set updatetime=250     " Update every 250ms
 
 " ---------------
 " Sounds
