@@ -175,6 +175,21 @@ nnoremap <leader>nt :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
 
+" ---------------
+" Proper cursor switching for VIM modes
+" ---------------
+if exists('$TMUX')
+	let &t_SI = "\<Esc>[5 q"
+	let &t_EI = "\<Esc>[0 q"
+	
+	" Fix for truecolor
+	set t_8b=[48;2;%lu;%lu;%lum
+	set t_8f=[38;2;%lu;%lu;%lum
+else
+	let &t_SI = "\<Esc>]50;CursorShape=5\x7"
+	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
 " --------------
 " VimGist
 " --------------
