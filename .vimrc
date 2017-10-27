@@ -40,7 +40,7 @@ Bundle 'Quramy/tsuquyomi'
 Bundle 'leafgarland/typescript-vim' 
 Bundle 'jason0x43/vim-js-indent'
 
-set directory^=$TMP//,$TEMP//,$TMPDIR//
+set directory^=$TMP//,$TEMP//,$TMPDIR//,/tmp//
 set nobackup
 set nowritebackup
 set nocompatible
