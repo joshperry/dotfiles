@@ -29,6 +29,7 @@ Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter'
 
 " Needed by typescript server client tsuquyomi
 Bundle 'Shougo/vimproc.vim'
@@ -102,13 +103,13 @@ augroup END
 " ---------------
 " UI
 " ---------------
-set ruler  " Ruler on
-set relativenumber " relative line numters
-set nu  " Enable "hybrid" line numbers
-set nowrap  " Line wrapping off
-set laststatus=2  " Always show the statusline
+set ruler			" Ruler on
+set relativenumber	" relative line numters
+set nu				" Enable "hybrid" line numbers
+set nowrap			" Line wrapping off
+set laststatus=2	" Always show the statusline
 set cmdheight=2
-set showcmd		" display incomplete commands
+set showcmd			" display incomplete commands
 set cursorline
 
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
