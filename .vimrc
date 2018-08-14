@@ -10,6 +10,7 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 Bundle 'tpope/vim-fugitive'
+Plugin 'tommcdo/vim-fubitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
@@ -18,7 +19,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'elzr/vim-json'
 Bundle 'tpope/vim-jdaddy'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-obsession'
 Bundle 'editorconfig/editorconfig-vim'
@@ -30,6 +31,9 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'metakirby5/codi.vim'
+Plugin 'w0rp/ale'
+Plugin 'kana/vim-submode'
 
 Plugin 'christoomey/vim-tmux-navigator' " Navigate tmux and vim panes seamlessly
 
@@ -160,6 +164,8 @@ let mapleader=","
 " ---------------
 " clear search highlights
 nnoremap <leader>s :let @/ = ""<CR>
+" grep in files with value in visual selection
+vnoremap <leader>g "ay:grep -rF "<C-r>a" ./*<CR><leader>g<CR>
 " complete an incsearch without highlights
 cnoremap <silent> <C-cr> <CR>:noh<CR>
 " Navigate splits with ctrl-hjkl
@@ -167,6 +173,15 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" ---------------
+"  Custom Submodes
+"  --------------
+" Enter grep submode
+let g:submode_always_show_submode = 1
+call submode#enter_with('LISTNAV', 'n', '', '<leader>g')
+call submode#map('LISTNAV', 'n', '', '<C-j>', ':cnext<CR>')
+call submode#map('LISTNAV', 'n', '', '<C-k>', ':cprev<CR>')
 
 " ---------------
 " NERDTree
@@ -179,19 +194,18 @@ nnoremap <leader>nt :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
 
-" ---------------
-" Proper cursor switching for VIM modes
-" ---------------
 if exists('$TMUX')
-	let &t_SI = "\<Esc>[5 q"
-	let &t_EI = "\<Esc>[0 q"
+	" Proper cursor switching for VIM modes in tmux
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[0 q\<Esc>\\"
 	
-	" Fix for truecolor
+	" Terminfo override for truecolor in tmux
 	set t_8b=[48;2;%lu;%lu;%lum
 	set t_8f=[38;2;%lu;%lu;%lum
 else
-	let &t_SI = "\<Esc>]50;CursorShape=5\x7"
-	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+	" Cursor switching for VIM modes
+	let &t_SI = "\<Esc>[5 q"
+	let &t_EI = "\<Esc>[0 q"
 endif
 
 " Truecolor support
@@ -206,6 +220,11 @@ let g:gist_clip_command = 'pbcopy'
 " --------------
 " Syntastic
 " --------------
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_mode_map = {
 	\ "mode": "active",
 	\ "passive_filetypes": ["typescript"] }
