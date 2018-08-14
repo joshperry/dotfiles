@@ -1,1 +1,4 @@
 .DS_Store
+
+.config/
+!.config/i3
