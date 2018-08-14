@@ -1,0 +1,30 @@
+{
+	"segments": {
+		"right": [
+			{
+				"function": "powerline.segments.common.net.network_load",
+				"args": {
+					"recv_format": "🔻{value} ",
+					"sent_format": "🔺{value} ",
+					"recv_max": 100000000,
+					"sent_max": 100000000
+				}
+			},
+			{
+				"function": "powerline.segments.common.sys.system_load",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%A",
+					"istime": true
+				}
+			},
+			{
+				"function": "powerline.segments.common.net.hostname"
+			}
+		]
+	}
+}
