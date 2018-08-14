@@ -1,0 +1,41 @@
+snippet mdesc "Mocha describe verbose"
+describe('${1:`!p snip.rv = fn.split(os.extsep)[0]`}', () => {
+	$0
+})
+endsnippet
+
+snippet mit "Mocha it"
+it('${1:It}', () => {
+	$0
+})
+endsnippet
+
+snippet mita "Mocha it"
+it('${1:It}', async () => {
+	$0
+})
+endsnippet
+
+snippet mbee "Mocha beforeEach"
+beforeEach(() => {
+	$0
+})
+endsnippet
+
+snippet mafe "Mocha afterEach"
+afterEach(() => {
+	$0
+})
+endsnippet
+
+snippet mbe "Mocha before"
+before(() => {
+	$0
+})
+endsnippet
+
+snippet maf "Mocha after"
+after(() => {
+	$0
+})
+endsnippet
