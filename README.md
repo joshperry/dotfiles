@@ -12,6 +12,7 @@ Provides For:
 
  - tmux
  - vim
+ - i3
 
 
 ### Installation
@@ -21,7 +22,7 @@ Provides For:
 	$ git clone git@github.com:joshperry/dotfiles.git ~/.dotfiles
 	```
 
-2. Bind dotfiles to home directory
+2. Bind dotfiles to home directory (n.b. execute this from ~)
    	```
     $ ~/.dotfiles/bind.sh
     ```
