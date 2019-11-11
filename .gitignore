@@ -1,4 +1,6 @@
 .DS_Store
-
-.config/
-!.config/i3
+.vim/.netrwhist
+.config/*
+!.config/i3/*
+!.config/powerline/*
+!.config/bash-completion

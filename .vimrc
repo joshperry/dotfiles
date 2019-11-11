@@ -47,6 +47,9 @@ Bundle 'Quramy/tsuquyomi'
 " Just syntax highlighting
 Bundle 'leafgarland/typescript-vim' 
 Bundle 'jason0x43/vim-js-indent'
+Bundle 'posva/vim-vue'
+
+Bundle 'equal-l2/vim-base64'
 
 set directory^=$TMP//,$TEMP//,$TMPDIR//,/tmp//
 set nobackup
