@@ -6,7 +6,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle'
 
 " My Bundles here:
 Bundle 'tpope/vim-fugitive'
@@ -26,6 +26,8 @@ Bundle 'editorconfig/editorconfig-vim'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'rodjek/vim-puppet'
 Plugin 'majutsushi/tagbar'
+Plugin 'preservim/vimux'
+Plugin 'vim-test/vim-test'
 Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'SirVer/ultisnips'
@@ -34,10 +36,16 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'metakirby5/codi.vim'
 Plugin 'w0rp/ale'
 Plugin 'kana/vim-submode'
+Plugin 'ruanyl/vim-gh-line'
+Plugin 'hashivim/vim-terraform'
+Plugin 'elixir-editors/vim-elixir'
 
 Plugin 'christoomey/vim-tmux-navigator' " Navigate tmux and vim panes seamlessly
 
-Plugin 'morhetz/gruvbox'
+Plugin 'gruvbox-community/gruvbox'
+
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 " Needed by typescript server client tsuquyomi
 Bundle 'Shougo/vimproc.vim'
@@ -48,6 +56,9 @@ Bundle 'Quramy/tsuquyomi'
 Bundle 'leafgarland/typescript-vim' 
 Bundle 'jason0x43/vim-js-indent'
 Bundle 'posva/vim-vue'
+Plugin 'jvirtanen/vim-hcl'
+Plugin 'robbles/logstash.vim'
+Plugin 'google/vim-jsonnet'
 
 Bundle 'equal-l2/vim-base64'
 
@@ -73,7 +84,6 @@ set incsearch	"incremental and highlight search
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  colorscheme gruvbox
 endif
 
 " In many terminal emulators the mouse works just fine, thus enable it.
@@ -165,6 +175,9 @@ let mapleader=","
 " ---------------
 " My Shortcuts
 " ---------------
+" run AG search
+nnoremap <leader>f :Ag<CR>
+nnoremap <leader>z :FZF<CR>
 " clear search highlights
 nnoremap <leader>s :let @/ = ""<CR>
 " grep in files with value in visual selection
@@ -176,6 +189,29 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" --------------
+" vim-test <3
+" --------------
+"nmap <silent> t<C-n> :TestNearest<CR>
+"nmap <silent> t<C-f> :TestFile<CR>
+"nmap <silent> t<C-s> :TestSuite<CR>
+"nmap <silent> t<C-l> :TestLast<CR>
+"nmap <silent> t<C-g> :TestVisit<CR>
+nnoremap <leader>th :TestNearest<CR>
+nnoremap <leader>ta :TestFile<CR>
+let test#strategy = "vimux"
+let g:test#preserve_screen = 1
+let g:test#echo_command = 1
+let test#go#gotest#options = {
+			\ 'nearest': '-coverprofile cover.out -v',
+			\ 'file': '-coverprofile cover.out -v',
+			\}
+function! GoCoverTransform(cmd) abort
+	return a:cmd.' && go tool cover -html=cover.out -o cover.html'
+endfunction
+let g:test#custom_transformations = {'gotest': function('GoCoverTransform')}
+let g:test#transformation = 'gotest'
 
 " ---------------
 "  Custom Submodes
@@ -190,10 +226,7 @@ call submode#map('LISTNAV', 'n', '', '<C-k>', ':cprev<CR>')
 " NERDTree
 " ---------------
 nmap <silent><C-n> :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTree<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
-nnoremap <leader>nc :NERDTreeClose<CR>
-nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
 
@@ -210,6 +243,9 @@ else
 	let &t_SI = "\<Esc>[5 q"
 	let &t_EI = "\<Esc>[0 q"
 endif
+
+let g:gruvbox_italic=1
+colorscheme gruvbox
 
 " Truecolor support
 set termguicolors	
@@ -245,3 +281,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="horizontal"
+
+" clang-format c/c++ on save
+function! Formatonsave()
+  let l:formatdiff = 1
+  py3f /usr/share/clang/clang-format-10/clang-format.py
+endfunction
+autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
